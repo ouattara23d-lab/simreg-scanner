@@ -1,0 +1,20 @@
+{
+  "overview": "Application d'accès SimReg MTN Côte d'Ivoire avec scanner de documents intégrés. Capture de documents via caméra, extraction OCR des données d'identité, affichage dans un panneau éditeur avec correction manuelle, et iframe SimReg pour le formulaire officiel.",
+  "features": [
+    "Scan de documents d'identité (CNI, passeport, permis, carte de séjour) via caméra",
+    "Extraction automatique des données OCR via service externe",
+    "Panneau d'affichage et correction manuelle des informations extraites",
+    "Intégration du portail SimReg MTN Côte d'Ivoire via iframe",
+    "Interface en français avec disposition côte à côte"
+  ],
+  "category": "productivity",
+  "tags": [
+    "simreg",
+    "mtn",
+    "document-scan",
+    "ocr",
+    "identity",
+    "cote-divoire"
+  ],
+  "last_updated": "2026-04-20T03:13:02.576Z"
+}

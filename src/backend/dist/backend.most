@@ -1,0 +1,43 @@
+// Version: 1.0.0
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type DocumentType__235549386 =
+  {#cni; #driver_license; #other; #passport; #residence_permit};
+type DocumentType__288802460 = DocumentType__235549386;
+type ExtractedFields__925097113 =
+  {
+    adresse : ?Text;
+    date_delivrance : ?Text;
+    date_expiration : ?Text;
+    date_naissance : ?Text;
+    lieu_naissance : ?Text;
+    nationalite : ?Text;
+    nom : ?Text;
+    numero_document : ?Text;
+    prenom : ?Text;
+    sexe : ?Text
+  };
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type ScanSession__396274430 =
+  {
+    document_type : DocumentType__288802460;
+    extracted : ExtractedFields__925097113;
+    principal_key : Text;
+    raw_json : Text;
+    scanned_at : Timestamp__846029930
+  };
+type Timestamp__301639476 = Int;
+type Timestamp__846029930 = Timestamp__301639476;
+actor {
+  stable sessions :
+    {
+      var root : Node__46230540<Text, ScanSession__396274430>;
+      var size : Nat__490723111
+    }
+};

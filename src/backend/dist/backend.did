@@ -1,0 +1,75 @@
+type http_request_result = 
+ record {
+   body: blob;
+   headers: vec http_header;
+   status: nat;
+ };
+type http_header = 
+ record {
+   name: text;
+   value: text;
+ };
+type TransformationOutput = 
+ record {
+   body: blob;
+   headers: vec http_header;
+   status: nat;
+ };
+type TransformationInput = 
+ record {
+   context: blob;
+   response: http_request_result;
+ };
+type Timestamp = int;
+type ScanSession = 
+ record {
+   document_type: DocumentType;
+   extracted: ExtractedFields;
+   principal_key: text;
+   raw_json: text;
+   scanned_at: Timestamp;
+ };
+type ScanResult = 
+ variant {
+   err: OcrError;
+   ok: ScanSession;
+ };
+type ScanRequest = 
+ record {
+   document_type: DocumentType;
+   image_base64: text;
+ };
+type OcrError = 
+ variant {
+   invalid_image;
+   network_error: text;
+   ocr_failure: text;
+   unsupported_document;
+ };
+type ExtractedFields = 
+ record {
+   adresse: opt text;
+   date_delivrance: opt text;
+   date_expiration: opt text;
+   date_naissance: opt text;
+   lieu_naissance: opt text;
+   nationalite: opt text;
+   nom: opt text;
+   numero_document: opt text;
+   prenom: opt text;
+   sexe: opt text;
+ };
+type DocumentType = 
+ variant {
+   cni;
+   driver_license;
+   other;
+   passport;
+   residence_permit;
+ };
+service : {
+  clearLastScan: () -> ();
+  getLastScan: () -> (opt ScanSession) query;
+  scanDocument: (request: ScanRequest) -> (ScanResult);
+  transform: (input: TransformationInput) -> (TransformationOutput) query;
+}
